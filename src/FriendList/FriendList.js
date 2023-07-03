@@ -1,31 +1,29 @@
+import React from "react";
 import PropTypes from "prop-types";
+import { Frend, Status, Avatar, Name, Section } from "./FriendList.styled";
 
-const Profile = ({ username, tag, location, avatar, stats }) => {
+export const FriendList = ({ friends }) => {
   return (
-    <div className="profile">
-      <div className="description">
-        <img src={avatar} alt="User avatar" className="avatar" />
-        <p className="name">{username}</p>
-        <p className="tag">@{tag}</p>
-        <p className="location">S{location}</p>
-      </div>
-
-      <ul className="stats">
-        <li>
-          <span className="label">Followers</span>
-          <span className="quantity">{stats.followers}</span>
-        </li>
-        <li>
-          <span className="label">Views</span>
-          <span className="quantity">{stats.views}</span>
-        </li>
-        <li>
-          <span className="label">Likes</span>
-          <span className="quantity">{stats.likes}</span>
-        </li>
-      </ul>
-    </div>
+    <Section>
+      {friends.map((item, idx) => (
+        <Frend key={item.id} id={item.id} index={idx}>
+          <Status>{item.isOnline}</Status>
+          <Avatar>{item.avatar}</Avatar>
+          <Name>{item.name}</Name>
+        </Frend>
+      ))}
+    </Section>
   );
 };
 
-export default Profile;
+FriendList.propTypes = {
+  // title: PropTypes.string,
+  friends: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      isOnline: PropTypes.bool.isRequired,
+      avatar: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+    }).isRequired
+  ).isRequired,
+};

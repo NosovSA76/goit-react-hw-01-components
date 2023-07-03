@@ -39,10 +39,6 @@ export const Avatar = styled.img`
   border-radius: ${props => props.theme.radii.round};
   box-shadow: -3px -3px 7px #ffffff, 3px 3px 5px #ceced1;
 
-  &:hover {
-    background: #ecf0f3;
-    box-shadow: inset -3px -3px 7px #ffffff, inset 3px 3px 5px #ceced1;
-  }
 `;
 
 export const Info = styled.p`
@@ -86,7 +82,7 @@ align-items: center;
 justify-content: center;
 flex-direction: column;
 width: 100%;
-border: .1px solid #80808042;
+border: ${props => props.theme.borders.normal};
   &:hover {
     background: #ecf0f3;
     box-shadow: inset -3px -3px 7px #ffffff, inset 3px 3px 5px #ceced1;

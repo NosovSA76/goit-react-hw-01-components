@@ -1,31 +1,37 @@
-import './Profile.css';
+import React from "react";
+import PropTypes from "prop-types";
+import {
+  Section,
+  Title,
+  StatList,
+  StatListItem,
+  Label,
+  Percentage,
+} from "./Statistics.styled";
 
-const Profile = ({ username, tag, location, avatar, stats }) => {
+export const Statistics = ({ stats, title }) => {
   return (
-    <div className="profile">
-      <div className="description">
-        <img src={avatar} alt="User avatar" className="avatar" />
-        <p className="name">{username}</p>
-        <p className="tag">@{tag}</p>
-        <p className="location">S{location}</p>
-      </div>
-
-      <ul className="stats">
-        <li>
-          <span className="label">Followers</span>
-          <span className="quantity">{stats.followers}</span>
-        </li>
-        <li>
-          <span className="label">Views</span>
-          <span className="quantity">{stats.views}</span>
-        </li>
-        <li>
-          <span className="label">Likes</span>
-          <span className="quantity">{stats.likes}</span>
-        </li>
-      </ul>
-    </div>
+    <Section>
+      {title && <Title>{title}</Title>}
+      <StatList>
+        {stats.map((item, idx) => (
+          <StatListItem key={item.id} id={item.id} index={idx}>
+            <Label>{item.label}</Label>
+            <Percentage>{item.percentage}%</Percentage>
+          </StatListItem>
+        ))}
+      </StatList>
+    </Section>
   );
 };
 
-export default Profile;
+Statistics.propTypes = {
+  title: PropTypes.string,
+  stats: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      label: PropTypes.string.isRequired,
+      percentage: PropTypes.number.isRequired,
+    }).isRequired
+  ).isRequired,
+};

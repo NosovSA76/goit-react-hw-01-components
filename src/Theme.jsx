@@ -34,7 +34,7 @@ export const theme = {
   },
   borders: {
     none: 'none',
-    normal: '1px solid',
+    normal: '.1px solid #80808042',
   },
   radii: {
     none: '0',
