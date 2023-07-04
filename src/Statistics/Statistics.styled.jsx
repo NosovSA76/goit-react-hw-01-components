@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { getRandomHexColor } from './getRandomHexColor';
+import { getRandomHexColor } from '../utils/getRandomHexColor';
 
 export const Section = styled.section`
 display: flex;
@@ -8,6 +8,8 @@ align-items: center;
 justify-content: center;
 width: ${props => props.theme.space[8]}px;
 background-color: ${props => props.theme.colors.background};
+border-radius: ${props => props.theme.radii.normal};
+box-shadow: -1px -1px 1px #fff, 1px 1px 1px #babecc;
 `
 
 export const Title = styled.p`

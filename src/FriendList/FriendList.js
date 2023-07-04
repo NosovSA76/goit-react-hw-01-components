@@ -1,26 +1,32 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { Frend, Status, Avatar, Name, Section } from "./FriendList.styled";
+import {
+  Friend,
+  Avatar,
+  Name,
+  StatusOn,
+  StatusOf,
+  Section,
+} from "./FriendList.styled";
 
 export const FriendList = ({ friends }) => {
   return (
     <Section>
       {friends.map((item, idx) => (
-        <Frend key={item.id} id={item.id} index={idx}>
-          <Status>{item.isOnline}</Status>
-          <Avatar>{item.avatar}</Avatar>
+        <Friend key={item.id} id={item.id} index={idx}>
+          {item.isOnline ? <StatusOn> </StatusOn> : <StatusOf> </StatusOf>}
+          <Avatar src={item.avatar} alt="Friend" />
           <Name>{item.name}</Name>
-        </Frend>
+        </Friend>
       ))}
     </Section>
   );
 };
 
 FriendList.propTypes = {
-  // title: PropTypes.string,
   friends: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.string.isRequired,
+      id: PropTypes.number.isRequired,
       isOnline: PropTypes.bool.isRequired,
       avatar: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,

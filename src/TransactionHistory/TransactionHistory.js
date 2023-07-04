@@ -1,31 +1,49 @@
-import './Profile.css';
+import React from "react";
+import PropTypes from "prop-types";
+import {
+  Transaction,
+  Type,
+  Amount,
+  Currency,
+  Section,
+} from "./TransactionHistory.styled";
 
-const Profile = ({ username, tag, location, avatar, stats }) => {
+export const TransactionHistory = ({ transactions }) => {
   return (
-    <div className="profile">
-      <div className="description">
-        <img src={avatar} alt="User avatar" className="avatar" />
-        <p className="name">{username}</p>
-        <p className="tag">@{tag}</p>
-        <p className="location">S{location}</p>
-      </div>
-
-      <ul className="stats">
-        <li>
-          <span className="label">Followers</span>
-          <span className="quantity">{stats.followers}</span>
-        </li>
-        <li>
-          <span className="label">Views</span>
-          <span className="quantity">{stats.views}</span>
-        </li>
-        <li>
-          <span className="label">Likes</span>
-          <span className="quantity">{stats.likes}</span>
-        </li>
-      </ul>
-    </div>
+    <Section>
+      <thead
+        style={{
+          color: "white",
+          backgroundColor: `#25b3cc`,
+          height: "30px",
+        }}
+      >
+        <tr>
+          <th>Type</th>
+          <th>Amount</th>
+          <th>Currency</th>
+        </tr>
+      </thead>
+      <tbody>
+        {transactions.map((item, idx) => (
+          <Transaction key={item.id} id={item.id} index={idx}>
+            <Type>{item.type}</Type>
+            <Amount>{item.amount}</Amount>
+            <Currency>{item.currency}</Currency>
+          </Transaction>
+        ))}
+      </tbody>
+    </Section>
   );
 };
 
-export default Profile;
+TransactionHistory.propTypes = {
+  transactions: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      type: PropTypes.string.isRequired,
+      amount: PropTypes.string.isRequired,
+      currency: PropTypes.string.isRequired,
+    }).isRequired
+  ).isRequired,
+};

@@ -7,6 +7,9 @@ import { Statistics } from './Statistics/Statistics';
 import  friends  from './FriendList/friends.json';
 import { FriendList } from './FriendList/FriendList';
 
+import  transactions  from './TransactionHistory/transactions.json';
+import { TransactionHistory } from './TransactionHistory/TransactionHistory';
+
 
 console.log(user)
 
@@ -14,7 +17,7 @@ export const App = () => {
   return (
     <div
       style={{
-        height: '100vh',
+        padding: '30px',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
@@ -22,18 +25,17 @@ export const App = () => {
         color: '#010101',
         flexDirection: 'column',
         textDecoration: `none`,
-        backgroundColor: `#dddff8`
-      }}
-    >
-<Profile
-  username={user.username}
-  tag={user.tag}
-  location={user.location}
-  avatar={user.avatar}
-  stats={user.stats}
-      />
-    <Statistics title="Upload stats" stats={data} />
-    <FriendList friends={friends} />
+        backgroundColor: `#c6e9f7`
+      }}>
+      <Profile
+        username={user.username}
+        tag={user.tag}
+        location={user.location}
+        avatar={user.avatar}
+        stats={user.stats}/>
+      <Statistics title="Upload stats" stats={data} />
+      <FriendList friends={friends} />
+      <TransactionHistory transactions={transactions} />
     </div>
   );
 };
