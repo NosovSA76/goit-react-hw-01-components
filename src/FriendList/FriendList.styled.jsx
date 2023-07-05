@@ -22,21 +22,23 @@ border-radius: ${props => props.theme.radii.medium};
 background-color: ${props => getRandomHexColor(props.index)};
 `
 
-export const StatusOn = styled.span`
+export const StatusDote = styled.span`
 display: block;
 width: ${props => props.theme.space[4]}px;
 height: ${props => props.theme.space[4]}px;
 border-radius: ${props => props.theme.radii.round};
-background-color:  red;
-`
+background-color: ${props => {
+    switch (props.status) {
+      case 'true':
+        return 'green';
+      case 'false':
+        return 'red';
+      default:
+        return 'black';
+    }
+  }};
+`;
 
-export const StatusOf = styled.span`
-display: block;
-width: ${props => props.theme.space[4]}px;
-height: ${props => props.theme.space[4]}px;
-border-radius: ${props => props.theme.radii.round};
-background-color: green;
-`
 export const Friend = styled.li`
 display: flex;
 box-sizing: border-box;
